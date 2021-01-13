@@ -9,6 +9,7 @@
 #include <rtdevice.h>
 #include <string.h>
 #include <vconsole.h>
+#include <finsh.h>
 
 #define PRINT   rt_kprintf
 
