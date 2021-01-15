@@ -10,13 +10,21 @@
 ## 使用概要
 
 ```c
-dev = vconsole_create("vc0", outfunction); //创建一个设备对象，传入数据输出函数指针
-old_dev = vconsole_switch(dev); //切换控制台
+static rt_size_t outfunction(rt_device_t device, rt_uint8_t *buff, rt_size_t size)
+{
+    //将 buff 输出到后端
+}
+/* 创建一个设备对象，传入数据输出函数指针 */
+dev = vconsole_create("vc0", outfunction);
+/* 切换控制台，并保存旧设备指针 */
+old_dev = vconsole_switch(dev);
+```
 
-/* 使用控制台 */
-
-vconsole_switch(old_dev); //切换至旧控制台
-vconsole_delete(dev); //删除设备对象
+```c
+/* 切换至旧控制台 */
+vconsole_switch(old_dev);
+/* 删除设备对象 */
+vconsole_delete(dev);
 ```
 
 ## API 介绍
