@@ -10,10 +10,12 @@
 ## 使用概要
 
 ```c
+/* 数据输出回调函数 */
 static rt_size_t outfunction(rt_device_t device, rt_uint8_t *buff, rt_size_t size)
 {
-    //将 buff 输出到后端
+    /* 将 buff 输出到通信设备（例如以太网、CAN总线、串口） */
 }
+
 /* 创建一个设备对象，传入数据输出函数指针 */
 dev = vconsole_create("vc0", outfunction);
 /* 切换控制台，并保存旧设备指针 */
@@ -37,7 +39,7 @@ vconsole_delete(dev);
 | ---- | ----| ---- |
 | `name` |  设备名 | 与系统中其他设备不重名 |
 | `out` | 输出函数 | 提供一个输出函数，用于控制台输出 |
-| **返回** | **描述** | 
+| **返回** | **描述** |
 | `rt_device_t` | 设备对象 |
 
 `rt_err_t vconsole_delete(rt_device_t device)`
@@ -47,7 +49,7 @@ vconsole_delete(dev);
 | 参数 | 描述 | 说明 |
 | ---- | ----| ---- |
 | `device` |  设备对象 |  |
-| **返回** | **描述** | 
+| **返回** | **描述** |
 | `rt_err_t` | RT_EOK 删除成功 |
 
 > 只能删除未使用的，并且是 `vconsole_create` 函数创建的设备
@@ -59,7 +61,7 @@ vconsole_delete(dev);
 | 参数 | 描述 | 说明 |
 | ---- | ----| ---- |
 | device | 设备对象 | |
-| **返回** | **描述** | 
+| **返回** | **描述** |
 | `rt_device_t` | 旧的控制台设备对象 |
 
 > 返回的旧设备对象，调用者保存，方便后续切换到旧的设备对象上。
@@ -73,7 +75,7 @@ vconsole_delete(dev);
 | device | 设备对象 | |
 | buff | 数据缓存指针 | |
 | size | 数据缓存区大小 | |
-| **返回** | **描述** | 
+| **返回** | **描述** |
 | `rt_size_t` | 实际接收的大小 |
 
 只能将数据灌到 `vconsole_create` 创建的对象上。
