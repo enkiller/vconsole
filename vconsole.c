@@ -10,6 +10,7 @@
 #include <string.h>
 #include <vconsole.h>
 #include <finsh.h>
+#include <sys/ioctl.h>
 
 #define PRINT   rt_kprintf
 
